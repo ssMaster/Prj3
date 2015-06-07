@@ -44,6 +44,7 @@ void main()
 	char testElement;			// List element
 	char cmd;					// Input command
 
+	/*
 	cout << endl << "Commands:" << endl;
 	cout << "  +x  : Insert x after the current element" << endl;
 	cout << "  -   : Remove the current element" << endl;
@@ -55,7 +56,15 @@ void main()
 	cout << "  E   : Empty list?" << endl;
 	cout << "  Q   : Quit the program" << endl;
 	cout << endl;
+	*/
 
+	// ========================================================================================================== self-test
+
+	testList.insert('a', 7);
+
+	// ====================================================================================================================
+
+	/*
 	do
 	{
 		outList(testList);							// Output list
@@ -123,4 +132,5 @@ void main()
 			cout << "Inactive or invalid command" << endl;
 		}
 	} while ((cmd != 'Q') && (cmd != 'q'));
+	*/
 }
