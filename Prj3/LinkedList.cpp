@@ -34,19 +34,114 @@ In all cases, properly moves the cursor to designate inserted item as the curren
 */
 template <typename Type>
 void LinkedList<Type>::insert(const Type &item, int i){
-	//cout << "In insert method." << endl;
-	//cout << "Item type: " << typeid(item).name() << endl;
-	cout << "Item value: " << item << "\tInteger value: " << i << endl;
+	ListElement *node;
 
 	// ======== insert the item into a list
-
-	ListElement *node = new ListElement(item, NULL);
 	
-	cout << "Value in node: " << node->element << endl;
+	// create the new node to add
 	
-	delete(node);
-	//LinkedList<Type>::ListElement *temp = head;
 
+	if (empty()){	// Insert the item as the first element in the list
+		node = new ListElement(item, NULL);
+
+		head = node;
+		cursor = head;
+		cout << "Should return 'a' : Return is: " << retrieve() << endl;
+	}
+	else{
+		if (i == 0){	// inserts the item immediately after the cursor
+			node = new ListElement(item, cursor->next);
+			cursor->next = node;
+			cursor = node;
+			cout << "Should return 'b' : Return is: " << retrieve() << endl;
+		}
+		if (i == -1){	// inserts the item immediately before the cursor
+
+		}
+	}
+}
+
+template <typename Type>
+int LinkedList<Type>::gotoPrior(){
+	if (empty() || cursor == head){
+		cout << "Nothing prior to head" << endl;
+		return 0;
+	}
+	else{
+		ListElement *temp = head;
+
+		cout << "Cursor is currently pointing to value: " << cursor->element << endl;
+
+		while (temp->next != cursor){
+			temp = temp->next;
+			cout << "moving forward..." << endl;
+		}
+
+		cout << "Prior element: " << temp->element << endl;
+
+		return 1;
+	}
+}
+
+template <typename Type>
+int LinkedList<Type>::gotoNext(){
+	if (cursor->next != NULL){
+		cursor = cursor->next;
+		cout << "going to next..." << endl;
+		return 1;
+	}
+	else{
+		return 0;
+	}
+}
+
+template <typename Type>
+int LinkedList<Type>::gotoBeginning(){
+	if (empty()){
+		return 1;
+	}
+	else{
+		cursor = head;
+		return 0;
+	}
+}
+
+template <typename Type>
+void LinkedList<Type>::display(){
+	gotoBeginning();
+
+	cout << endl << "Displaying..." << endl;
+
+	if (cursor == NULL){
+		cout << "NULLLLLLL" << endl;
+	}
+
+	if (cursor->next == NULL){
+		cout << "Value: " << cursor->element << endl;
+	}
+	else{
+		cout << "Values found: ";
+		while (cursor != NULL){
+			cout << cursor->element;
+			cursor = cursor->next;
+			if (cursor != NULL){
+				cout << ", ";
+			}
+			
+		}
+		cout << endl;
+	}
+}
+
+template <typename Type>
+Type LinkedList<Type>::retrieve() const{
+	if (empty()){
+		return NULL;
+	}
+	else{
+		Type copyElement = cursor->element;
+		return copyElement;
+	}
 }
 
 /*

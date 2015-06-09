@@ -59,19 +59,24 @@ void main()
 	*/
 
 	// ========================================================================================================== self-test
-
+	
 	if (testList.empty()){
 		cout << "Empty" << endl;
 	}
 	else{
 		cout << "Not empty" << endl;
 	}
+	
+	testList.insert('a', 0);
+	testList.insert('b', 0);
+	testList.insert('c', 0);
 
-	testList.insert('a', 7);
-
-
+	int i = testList.gotoPrior();
+	cout << "Result of prior: " << i << endl;
+	//testList.display();
+	
 	// ====================================================================================================================
-
+	
 	/*
 	do
 	{
