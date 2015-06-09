@@ -4,14 +4,20 @@
 
 template <typename Type>
 LinkedList<Type>::LinkedList(){
-
+	head = NULL;
+	cursor = head;
 }
 
 
 
 template <typename Type>
 LinkedList<Type>::~LinkedList(){
-
+	ListElement* temp = head;
+	while (temp != NULL){
+		temp = temp->next;
+		delete(head);
+		head = temp;
+	}
 }
 
 // ============= Insert and Remove operations
@@ -28,15 +34,32 @@ In all cases, properly moves the cursor to designate inserted item as the curren
 */
 template <typename Type>
 void LinkedList<Type>::insert(const Type &item, int i){
-	cout << "In insert method." << endl;
-	cout << "Item type: " << typeid(item).name() << endl;
+	//cout << "In insert method." << endl;
+	//cout << "Item type: " << typeid(item).name() << endl;
 	cout << "Item value: " << item << "\tInteger value: " << i << endl;
 
 	// ======== insert the item into a list
 
-	ListElement::element = item;
-	ListElement::next = NULL;
+	ListElement *node = new ListElement(item, NULL);
+	
+	cout << "Value in node: " << node->element << endl;
+	
+	delete(node);
+	//LinkedList<Type>::ListElement *temp = head;
 
+}
+
+/*
+Return 1 when empty, else 0
+*/
+template <typename Type>
+int LinkedList<Type>::empty() const{
+	if (head == NULL && cursor == NULL){	// Empty list
+		return 1;
+	}
+	else{	// There are elements in the list
+		return 0;
+	}
 }
 
 

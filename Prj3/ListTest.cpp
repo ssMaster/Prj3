@@ -42,8 +42,8 @@ void main()
 {
 	LinkedList<char> testList;		// Test list
 	char testElement;			// List element
-	char cmd;					// Input command
-
+	//char cmd;					// Input command
+	
 	/*
 	cout << endl << "Commands:" << endl;
 	cout << "  +x  : Insert x after the current element" << endl;
@@ -60,7 +60,15 @@ void main()
 
 	// ========================================================================================================== self-test
 
+	if (testList.empty()){
+		cout << "Empty" << endl;
+	}
+	else{
+		cout << "Not empty" << endl;
+	}
+
 	testList.insert('a', 7);
+
 
 	// ====================================================================================================================
 
