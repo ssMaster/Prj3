@@ -56,28 +56,57 @@ void LinkedList<Type>::insert(const Type &item, int i){
 			cout << "Should return 'b' : Return is: " << retrieve() << endl;
 		}
 		if (i == -1){	// inserts the item immediately before the cursor
-
+			cout << "Cursor currently: " << cursor->element << endl;
+			gotoPrior();
+			cout << "Cursor now: " << cursor->element << endl;
 		}
+	}
+}
+
+/*
+When a list is not empty, removes the current elemnt from the list.
+After deleting the cursor pointing element, set the cursor to the following element.
+- If the cursor is pointing to an element that is the only element in the list, you
+should properly set the head and cursor pointer after deleting the node.
+- If the cursor is pointing to the last element of the list, the link field of the
+previous node of the last node should be set to null after deleting the node.
+Set the cursor to the head pointing element.
+*/
+/*
+template <typename Type>
+void LinkedList<Type>::remove(){
+
+}*/
+
+template <typename Type>
+Type LinkedList<Type>::retrieve() const{
+	if (empty()){
+		return NULL;
+	}
+	else{
+		Type copyElement = cursor->element;
+		return copyElement;
 	}
 }
 
 template <typename Type>
 int LinkedList<Type>::gotoPrior(){
 	if (empty() || cursor == head){
-		cout << "Nothing prior to head" << endl;
+		//cout << "Nothing prior to head" << endl;
 		return 0;
 	}
 	else{
 		ListElement *temp = head;
 
-		cout << "Cursor is currently pointing to value: " << cursor->element << endl;
+		//cout << "Cursor is currently pointing to value: " << cursor->element << endl;
 
 		while (temp->next != cursor){
 			temp = temp->next;
 			cout << "moving forward..." << endl;
 		}
 
-		cout << "Prior element: " << temp->element << endl;
+		cursor = temp;
+		//cout << "Prior element: " << temp->element << endl;
 
 		return 1;
 	}
@@ -87,7 +116,7 @@ template <typename Type>
 int LinkedList<Type>::gotoNext(){
 	if (cursor->next != NULL){
 		cursor = cursor->next;
-		cout << "going to next..." << endl;
+		//cout << "going to next..." << endl;
 		return 1;
 	}
 	else{
@@ -106,6 +135,36 @@ int LinkedList<Type>::gotoBeginning(){
 	}
 }
 
+/*
+Remove all the elements in a list and deallocates associated dynamic memory
+*/
+template <typename Type>
+void LinkedList<Type>::clear(){
+	gotoBeginning();
+	
+	while (cursor != NULL){
+		cursor = cursor->next;
+		//cout << "Deleting head element: " << head->element << endl;
+		delete(head);
+		head = cursor;
+	}
+}
+
+/*
+Return 1 when empty, else 0
+*/
+template <typename Type>
+int LinkedList<Type>::empty() const{
+	if (head == NULL && cursor == NULL){	// Empty list
+		return 1;
+	}
+	else{	// There are elements in the list
+		return 0;
+	}
+}
+
+
+// ------------------------------------------------------- remove display method when done
 template <typename Type>
 void LinkedList<Type>::display(){
 	gotoBeginning();
@@ -133,44 +192,9 @@ void LinkedList<Type>::display(){
 	}
 }
 
-template <typename Type>
-Type LinkedList<Type>::retrieve() const{
-	if (empty()){
-		return NULL;
-	}
-	else{
-		Type copyElement = cursor->element;
-		return copyElement;
-	}
-}
-
-/*
-Return 1 when empty, else 0
-*/
-template <typename Type>
-int LinkedList<Type>::empty() const{
-	if (head == NULL && cursor == NULL){	// Empty list
-		return 1;
-	}
-	else{	// There are elements in the list
-		return 0;
-	}
-}
 
 
-/*
-When a list is not empty, removes the current elemnt from the list.
-After deleting the cursor pointing element, set the cursor to the following element.
-- If the cursor is pointing to an element that is the only element in the list, you
-  should properly set the head and cursor pointer after deleting the node.
-- If the cursor is pointing to the last element of the list, the link field of the 
-  previous node of the last node should be set to null after deleting the node.
-  Set the cursor to the head pointing element.
-*/
-/*
-template <typename Type>
-void LinkedList<Type>::remove(){
 
-}*/
+
 
 // ===================

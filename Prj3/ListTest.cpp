@@ -68,12 +68,13 @@ void main()
 	}
 	
 	testList.insert('a', 0);
-	testList.insert('b', 0);
-	testList.insert('c', 0);
+	testList.insert('b', -1);	// problem when trying to add before 'a'
+	testList.insert('c', 0);	
 
-	int i = testList.gotoPrior();
-	cout << "Result of prior: " << i << endl;
-	//testList.display();
+	//int i = testList.gotoPrior();
+	//cout << "Result of prior: " << i << endl;
+	testList.display();
+	//testList.clear();
 	
 	// ====================================================================================================================
 	
