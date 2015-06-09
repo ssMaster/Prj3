@@ -42,8 +42,21 @@ void main()
 {
 	LinkedList<char> testList;		// Test list
 	char testElement;			// List element
-	char cmd;					// Input command
 
+	// ==========================================================
+
+	if (testList.empty()){
+		cout << "Empty" << endl;
+	}
+	else{
+		cout << "Not empty" << endl;
+	}
+
+	// ==========================================================
+
+	/*
+	char cmd;					// Input command
+	
 	cout << endl << "Commands:" << endl;
 	cout << "  +x  : Insert x after the current element" << endl;
 	cout << "  -   : Remove the current element" << endl;
@@ -123,4 +136,5 @@ void main()
 			cout << "Inactive or invalid command" << endl;
 		}
 	} while ((cmd != 'Q') && (cmd != 'q'));
+	*/
 }
