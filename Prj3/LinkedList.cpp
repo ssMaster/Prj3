@@ -2,14 +2,34 @@
 
 #include <typeinfo>
 
+/*
+Default constructor
+*/
 template <typename Type>
 LinkedList<Type>::LinkedList(){
 	head = NULL;
 	cursor = head;
 }
 
+/*
+Copy constructor
+*/
+template <typename Type>
+LinkedList<Type>::LinkedList(const LinkedList &src){
+	ListElement* temp = src.head;
 
+	while (temp != NULL){
+		cout << "Temp element: " << temp->element << endl;
+		temp = temp->next;
+	}
+	//cout << "In copy constructor" << endl;
+	//cout << "Cursor element of src is: " << src.cursor->element << endl;
+	
+}
 
+/*
+Destructor
+*/
 template <typename Type>
 LinkedList<Type>::~LinkedList(){
 	ListElement* temp = head;
@@ -96,6 +116,9 @@ void LinkedList<Type>::remove(){
 	}
 }
 
+/*
+Returns a copy of the cursor pointing element when the list is not empty
+*/
 template <typename Type>
 Type LinkedList<Type>::retrieve() const{
 	if (empty()){
@@ -107,34 +130,39 @@ Type LinkedList<Type>::retrieve() const{
 	}
 }
 
+/*
+If a list is not empty and the cursor is not pointing to the first element
+of the list, then designates the element immediately before the current
+element as the current element and returns 1. Otherwise, returns 0;
+*/
 template <typename Type>
 int LinkedList<Type>::gotoPrior(){
 	if (empty() || cursor == head){
-		//cout << "Nothing prior to head" << endl;
 		return 0;
 	}
 	else{
 		ListElement *temp = head;
 
-		//cout << "Cursor is currently pointing to value: " << cursor->element << endl;
-
 		while (temp->next != cursor){
 			temp = temp->next;
 			cout << "moving forward..." << endl;
 		}
-
 		cursor = temp;
-		//cout << "Prior element: " << temp->element << endl;
 
 		return 1;
 	}
 }
 
+/*
+If the current element is not at the end of the list, then designates the 
+element immediately after the current element as the current element and
+returns 1. Otherwise, returns 0.
+*/
 template <typename Type>
 int LinkedList<Type>::gotoNext(){
 	if (cursor->next != NULL){
 		cursor = cursor->next;
-		//cout << "going to next..." << endl;
+
 		return 1;
 	}
 	else{
@@ -142,6 +170,10 @@ int LinkedList<Type>::gotoNext(){
 	}
 }
 
+/*
+If a list is not empty, then designates the element at the beginning
+of the lsit as the current element and returns 1. Otherwise, returns 0.
+*/
 template <typename Type>
 int LinkedList<Type>::gotoBeginning(){
 	if (empty()){
@@ -162,7 +194,6 @@ void LinkedList<Type>::clear(){
 	
 	while (cursor != NULL){
 		cursor = cursor->next;
-		//cout << "Deleting head element: " << head->element << endl;
 		delete(head);
 		head = cursor;
 	}

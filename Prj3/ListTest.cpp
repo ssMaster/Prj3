@@ -74,10 +74,7 @@ void main()
 	testList.insert('k', 0);
 	
 	cout << endl << endl;
-	testList.display();
 	testList.remove();
-	cout << "----------";
-	testList.display();
 	cout << endl << endl;
 
 	// remove when the cursor is at the end of the list ------- done
@@ -85,8 +82,10 @@ void main()
 	testList.insert('x', 0);
 	testList.insert('y', 0);
 	testList.insert('z', 0);
-	//testList.display();
-	testList.remove();
+	
+	LinkedList<char> newList(testList);
+
+	//testList.remove();
 	
 	/*
 	testList.insert('a', 0);

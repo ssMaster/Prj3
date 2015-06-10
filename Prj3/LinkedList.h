@@ -21,7 +21,7 @@ public:
 
 	void display();	// ----------------- remove when finished testing
 
-	//LinkedList(const LinkedList &src);
+	LinkedList(const LinkedList &src);
 
 protected:
 	class ListElement{
