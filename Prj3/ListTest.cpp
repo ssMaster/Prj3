@@ -66,14 +66,37 @@ void main()
 	else{
 		cout << "Not empty" << endl;
 	}
+
+	// remove when the list is empty ------ done
+	testList.remove();
 	
+	// remove when there is only one node ------- done?
+	testList.insert('k', 0);
+	
+	cout << endl << endl;
+	testList.display();
+	testList.remove();
+	cout << "----------";
+	testList.display();
+	cout << endl << endl;
+
+	// remove when the cursor is at the end of the list ------- done
+	cout << "Removing node at end of list-----" << endl;
+	testList.insert('x', 0);
+	testList.insert('y', 0);
+	testList.insert('z', 0);
+	//testList.display();
+	testList.remove();
+	
+	/*
 	testList.insert('a', 0);
 	testList.insert('b', -1);	// problem when trying to add before 'a'
 	testList.insert('c', 0);	
+	*/
 
 	//int i = testList.gotoPrior();
 	//cout << "Result of prior: " << i << endl;
-	testList.display();
+	//testList.display();
 	//testList.clear();
 	
 	// ====================================================================================================================

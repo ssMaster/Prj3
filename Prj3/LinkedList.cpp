@@ -72,11 +72,29 @@ should properly set the head and cursor pointer after deleting the node.
 previous node of the last node should be set to null after deleting the node.
 Set the cursor to the head pointing element.
 */
-/*
 template <typename Type>
 void LinkedList<Type>::remove(){
+	if (!empty()){	// an element can be removed
+		if (cursor == head){	// there is only one node in the list
+			delete(head);
+			head = cursor = NULL;
+		}
+		else if (cursor->next == NULL){		// cursor pointing to the last element in the list
+			cout << "Cursor at the start: " << cursor->element << endl;
+			gotoPrior();
+			cout << "Prior cursor: " << cursor->element << endl;
+			delete(cursor->next);
+			cursor->next = NULL;
+			cursor = head;
 
-}*/
+			cout << "Cursor value is now: " << cursor->element << endl;
+		}
+	}
+	else{
+		cout << "Nothing to remove" << endl;
+		return;
+	}
+}
 
 template <typename Type>
 Type LinkedList<Type>::retrieve() const{
@@ -173,6 +191,7 @@ void LinkedList<Type>::display(){
 
 	if (cursor == NULL){
 		cout << "NULLLLLLL" << endl;
+		return;
 	}
 
 	if (cursor->next == NULL){
