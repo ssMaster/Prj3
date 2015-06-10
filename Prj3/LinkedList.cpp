@@ -1,6 +1,10 @@
-#include "LinkedList.h"
+/*
+Simon Sharudin
+CS331 - Project 3
+June 9, 2015
+*/
 
-#include <typeinfo>
+#include "LinkedList.h"
 
 /*
 Default constructor
@@ -18,13 +22,15 @@ template <typename Type>
 LinkedList<Type>::LinkedList(const LinkedList &src){
 	ListElement* temp = src.head;
 
+	// Reset the head and cursor pointers to NULL
+	head = NULL;
+	cursor = NULL;
+
+	// Insert the nodes
 	while (temp != NULL){
-		cout << "Temp element: " << temp->element << endl;
+		insert(temp->element, 0);
 		temp = temp->next;
 	}
-	//cout << "In copy constructor" << endl;
-	//cout << "Cursor element of src is: " << src.cursor->element << endl;
-	
 }
 
 /*
@@ -57,28 +63,24 @@ void LinkedList<Type>::insert(const Type &item, int i){
 	ListElement *node;
 
 	// ======== insert the item into a list
-	
 	// create the new node to add
 	
-
 	if (empty()){	// Insert the item as the first element in the list
 		node = new ListElement(item, NULL);
-
 		head = node;
 		cursor = head;
-		cout << "Should return 'a' : Return is: " << retrieve() << endl;
 	}
 	else{
 		if (i == 0){	// inserts the item immediately after the cursor
 			node = new ListElement(item, cursor->next);
 			cursor->next = node;
 			cursor = node;
-			cout << "Should return 'b' : Return is: " << retrieve() << endl;
 		}
 		if (i == -1){	// inserts the item immediately before the cursor
-			cout << "Cursor currently: " << cursor->element << endl;
 			gotoPrior();
-			cout << "Cursor now: " << cursor->element << endl;
+			node = new ListElement(item, cursor->next);
+			cursor->next = node;
+			cursor = node;
 		}
 	}
 }
@@ -100,14 +102,10 @@ void LinkedList<Type>::remove(){
 			head = cursor = NULL;
 		}
 		else if (cursor->next == NULL){		// cursor pointing to the last element in the list
-			cout << "Cursor at the start: " << cursor->element << endl;
 			gotoPrior();
-			cout << "Prior cursor: " << cursor->element << endl;
 			delete(cursor->next);
 			cursor->next = NULL;
 			cursor = head;
-
-			cout << "Cursor value is now: " << cursor->element << endl;
 		}
 	}
 	else{
@@ -145,7 +143,6 @@ int LinkedList<Type>::gotoPrior(){
 
 		while (temp->next != cursor){
 			temp = temp->next;
-			cout << "moving forward..." << endl;
 		}
 		cursor = temp;
 
@@ -160,6 +157,9 @@ returns 1. Otherwise, returns 0.
 */
 template <typename Type>
 int LinkedList<Type>::gotoNext(){
+	if (empty()){
+		return 0;
+	}
 	if (cursor->next != NULL){
 		cursor = cursor->next;
 
@@ -176,11 +176,11 @@ of the lsit as the current element and returns 1. Otherwise, returns 0.
 */
 template <typename Type>
 int LinkedList<Type>::gotoBeginning(){
-	if (empty()){
+	if (!empty()){
+		cursor = head;
 		return 1;
 	}
 	else{
-		cursor = head;
 		return 0;
 	}
 }
@@ -211,40 +211,3 @@ int LinkedList<Type>::empty() const{
 		return 0;
 	}
 }
-
-
-// ------------------------------------------------------- remove display method when done
-template <typename Type>
-void LinkedList<Type>::display(){
-	gotoBeginning();
-
-	cout << endl << "Displaying..." << endl;
-
-	if (cursor == NULL){
-		cout << "NULLLLLLL" << endl;
-		return;
-	}
-
-	if (cursor->next == NULL){
-		cout << "Value: " << cursor->element << endl;
-	}
-	else{
-		cout << "Values found: ";
-		while (cursor != NULL){
-			cout << cursor->element;
-			cursor = cursor->next;
-			if (cursor != NULL){
-				cout << ", ";
-			}
-			
-		}
-		cout << endl;
-	}
-}
-
-
-
-
-
-
-// ===================

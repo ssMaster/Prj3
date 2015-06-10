@@ -1,3 +1,9 @@
+/*
+Simon Sharudin
+CS331 - Project 3
+June 9, 2015
+*/
+
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 
@@ -18,8 +24,6 @@ public:
 	int gotoBeginning();
 	void clear();
 	int empty() const;
-
-	void display();	// ----------------- remove when finished testing
 
 	LinkedList(const LinkedList &src);
 

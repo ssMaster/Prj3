@@ -1,3 +1,9 @@
+/*
+Simon Sharudin
+CS331 - Project 3
+June 9, 2015
+*/
+
 /*	NOTE for using the LinkedList Test Program
 
 This program allows users testing their implementation interactively.
@@ -41,10 +47,9 @@ void outList(LinkedList<Type> list)
 void main()
 {
 	LinkedList<char> testList;		// Test list
-	char testElement;			// List element
-	//char cmd;					// Input command
+	char testElement;				// List element
+	char cmd;						// Input command
 	
-	/*
 	cout << endl << "Commands:" << endl;
 	cout << "  +x  : Insert x after the current element" << endl;
 	cout << "  -   : Remove the current element" << endl;
@@ -55,59 +60,18 @@ void main()
 	cout << "  C   : Clear the list" << endl;
 	cout << "  E   : Empty list?" << endl;
 	cout << "  Q   : Quit the program" << endl;
+	cout << "  B   : Insert before the current element" << endl;
 	cout << endl;
-	*/
-
-	// ========================================================================================================== self-test
 	
-	if (testList.empty()){
-		cout << "Empty" << endl;
-	}
-	else{
-		cout << "Not empty" << endl;
-	}
-
-	// remove when the list is empty ------ done
-	testList.remove();
-	
-	// remove when there is only one node ------- done?
-	testList.insert('k', 0);
-	
-	cout << endl << endl;
-	testList.remove();
-	cout << endl << endl;
-
-	// remove when the cursor is at the end of the list ------- done
-	cout << "Removing node at end of list-----" << endl;
-	testList.insert('x', 0);
-	testList.insert('y', 0);
-	testList.insert('z', 0);
-	
-	LinkedList<char> newList(testList);
-
-	//testList.remove();
-	
-	/*
-	testList.insert('a', 0);
-	testList.insert('b', -1);	// problem when trying to add before 'a'
-	testList.insert('c', 0);	
-	*/
-
-	//int i = testList.gotoPrior();
-	//cout << "Result of prior: " << i << endl;
-	//testList.display();
-	//testList.clear();
-	
-	// ====================================================================================================================
-	
-	/*
 	do
 	{
 		outList(testList);							// Output list
 		cout << endl << "Command: ";				// Read command
 		cin >> cmd;
-		if ((cmd == '+') || (cmd == '=') || (cmd == '#'))
+		if ((cmd == '+') || (cmd == '=') || (cmd == '#') || (cmd == 'B'))
 			cin >> testElement;
+
+		cout << "You wish to insert: " << testElement << endl;
 
 		switch (cmd)
 		{
@@ -125,7 +89,7 @@ void main()
 			cout << "Current element is "
 				<< testList.retrieve() << endl;
 			break;
-
+			
 		case '<':
 			if (testList.gotoBeginning())
 				cout << "Go to the beginning of the list" << endl;
@@ -164,9 +128,13 @@ void main()
 		case 'Q': case 'q':
 			break;
 
+		case 'B': case 'b':
+			cout << "Insert " << testElement << endl;
+			testList.insert(testElement, -1);
+			break;
+
 		default:
 			cout << "Inactive or invalid command" << endl;
 		}
 	} while ((cmd != 'Q') && (cmd != 'q'));
-	*/
 }
