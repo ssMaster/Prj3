@@ -34,10 +34,19 @@ void LinkedList<Type>::insert(const Type &item, int i){
 
 	// ======== insert the item into a list
 
-	ListElement::element = item;
-	ListElement::next = NULL;
+	ListElement->element = item;
+	ListElement->next = NULL;
 
 }
+
+/*
+0 when not empty, else 1
+*/
+template <typename Type>
+int LinkedList<Type>::empty() const{
+	return 1;
+}
+
 
 
 /*
