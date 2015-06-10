@@ -42,8 +42,8 @@ void main()
 {
 	LinkedList<char> testList;		// Test list
 	char testElement;			// List element
-	char cmd;					// Input command
-
+	//char cmd;					// Input command
+	
 	/*
 	cout << endl << "Commands:" << endl;
 	cout << "  +x  : Insert x after the current element" << endl;
@@ -59,17 +59,47 @@ void main()
 	*/
 
 	// ========================================================================================================== self-test
-
-	//testList.insert('a', 7);
+	
 	if (testList.empty()){
-		cout << "Empty." << endl;
+		cout << "Empty" << endl;
 	}
 	else{
 		cout << "Not empty" << endl;
 	}
 
-	// ====================================================================================================================
+	// remove when the list is empty ------ done
+	testList.remove();
+	
+	// remove when there is only one node ------- done?
+	testList.insert('k', 0);
+	
+	cout << endl << endl;
+	testList.remove();
+	cout << endl << endl;
 
+	// remove when the cursor is at the end of the list ------- done
+	cout << "Removing node at end of list-----" << endl;
+	testList.insert('x', 0);
+	testList.insert('y', 0);
+	testList.insert('z', 0);
+	
+	LinkedList<char> newList(testList);
+
+	//testList.remove();
+	
+	/*
+	testList.insert('a', 0);
+	testList.insert('b', -1);	// problem when trying to add before 'a'
+	testList.insert('c', 0);	
+	*/
+
+	//int i = testList.gotoPrior();
+	//cout << "Result of prior: " << i << endl;
+	//testList.display();
+	//testList.clear();
+	
+	// ====================================================================================================================
+	
 	/*
 	do
 	{

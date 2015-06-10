@@ -11,15 +11,17 @@ public:
 	~LinkedList();
 
 	void insert(const Type &item, int);
-	/*void remove();
-	Type retrrieve() const;
+	void remove();
+	Type retrieve() const;
 	int gotoPrior();
 	int gotoNext();
 	int gotoBeginning();
-	void clear();*/
+	void clear();
 	int empty() const;
 
-	//LinkedList(const LinkedList &src);
+	void display();	// ----------------- remove when finished testing
+
+	LinkedList(const LinkedList &src);
 
 protected:
 	class ListElement{
