@@ -47,9 +47,51 @@ void outList(LinkedList<Type> list)
 void main()
 {
 	LinkedList<char> testList;		// Test list
-	char testElement;				// List element
-	char cmd;						// Input command
+	//char testElement;				// List element
+	//char cmd;						// Input command
 	
+	// =============================================
+
+	// make list: a, b, c, d, e, f, g 
+	testList.insert('a', 0);
+	testList.insert('b', 0);
+	testList.insert('c', 0);
+	testList.insert('d', 0);
+	testList.insert('e', 0);
+	testList.insert('f', 0);
+	testList.insert('g', 0);
+
+	// display list
+	outList(testList);
+
+	// display cursor - should be g
+	cout << "Current element is " << testList.retrieve() << endl;
+	
+	// move cursor so that it points to d
+	testList.gotoPrior();
+	testList.gotoPrior();
+	testList.gotoPrior();
+	cout << "Current element of testlist is " << testList.retrieve() << endl;
+	cout << "Current element of testlist is " << testList.retrieve() << endl << endl << endl;
+	
+	// make a copy of the list using copy constructor
+	LinkedList<char> copy(testList);
+	
+	// display the copy
+	outList(copy);
+
+	// display the cursor of the copy - should be d
+	cout << "Current element of copy is " << copy.retrieve() << endl;
+	cout << "Current element of testlist is " << testList.retrieve() << endl << endl << endl;
+
+	copy.gotoBeginning();
+	cout << "Current element of copy is " << copy.retrieve() << endl;
+	cout << "Current element of testlist is " << testList.retrieve() << endl << endl << endl;
+
+	
+	// =============================================
+
+	/*
 	cout << endl << "Commands:" << endl;
 	cout << "  +x  : Insert x after the current element" << endl;
 	cout << "  -   : Remove the current element" << endl;
@@ -60,7 +102,7 @@ void main()
 	cout << "  C   : Clear the list" << endl;
 	cout << "  E   : Empty list?" << endl;
 	cout << "  Q   : Quit the program" << endl;
-	cout << "  B   : Insert before the current element" << endl;
+	cout << "  Bx   : Insert x before the current element" << endl;
 	cout << endl;
 	
 	do
@@ -136,5 +178,5 @@ void main()
 		default:
 			cout << "Inactive or invalid command" << endl;
 		}
-	} while ((cmd != 'Q') && (cmd != 'q'));
+	} while ((cmd != 'Q') && (cmd != 'q'));*/
 }

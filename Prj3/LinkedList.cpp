@@ -13,6 +13,7 @@ template <typename Type>
 LinkedList<Type>::LinkedList(){
 	head = NULL;
 	cursor = head;
+	cout << "default constructor" << endl;
 }
 
 /*
@@ -22,14 +23,31 @@ template <typename Type>
 LinkedList<Type>::LinkedList(const LinkedList &src){
 	ListElement* temp = src.head;
 
+
 	// Reset the head and cursor pointers to NULL
 	head = NULL;
 	cursor = NULL;
 
-	// Insert the nodes
+	// Insert the nodes, keeping track of where the cursor should be
+	int count = 0;
+	bool flag = false;
 	while (temp != NULL){
+		if (temp == src.cursor){
+			flag = true;
+		}
+
+		if (!flag){
+			count++;
+		}
+
 		insert(temp->element, 0);
 		temp = temp->next;
+	}
+
+	// Move the cursor of the copy to same position as the source
+	cursor = head;
+	for (int i = 0; i < count; i++){
+		cursor = cursor->next;
 	}
 }
 
@@ -123,8 +141,7 @@ Type LinkedList<Type>::retrieve() const{
 		return NULL;
 	}
 	else{
-		Type copyElement = cursor->element;
-		return copyElement;
+		return cursor->element;
 	}
 }
 
